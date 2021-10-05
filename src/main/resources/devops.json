@@ -1,0 +1,162 @@
+﻿/*
+流程说明：
+    1、程序启动后读运维管理数据库；
+    2、读取成功：定时检测设置尝试是否改变，改变则定时上送状态；
+      若读取失败(服务器未下发设置)，则从配置文件中读取相关参数，不检测状态；
+*/
+
+//运维安全管理状态查询
+"/v1/{edgeId}/security/devops/cmd"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_OPS_QUERY"
+}
+
+"/v1/{edgeId}/security/devops/cmdRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_OPS_QUERY",
+    "param":{
+            "Protocol": 2, 
+            "Compression": "yes", 
+            "MaxAuthTries": 3, 
+            "PermitRootLogin": "no", 
+            "PrintLastLog": "yes", 
+            "ClientAliveInterval":15,
+            "ClientAliveCountMax":3,
+            "AllowUsers":"root test", 
+            "PermitEmptyPasswords":"no", 
+            "IgnoreRhosts":"yes",
+            "X11Forwarding":"no",
+            "Port":17092, 
+            "ListenAddress":"0.0.0.0", 
+            "key_right":"0600"
+        }
+}
+
+//运维安全管理设置命令
+"/v1/{edgeId}/security/devops/cmd"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_OPS_SET",
+    "param":{
+            "Protocol": 2, 
+            "Compression": "yes", 
+            "MaxAuthTries": 3,  
+            "PermitRootLogin": "no", 
+            "PrintLastLog": "yes", 
+            "ClientAliveInterval":15,
+            "ClientAliveCountMax":3,
+            "AllowUsers":"root test", 
+            "PermitEmptyPasswords":"no", 
+            "IgnoreRhosts":"yes", 
+            "X11Forwarding":"no",
+            "Port":17092, 
+            "ListenAddress":"0.0.0.0", 
+            "key_right":"600" 
+        }
+}
+"/v1/{edgeId}/security/devops/cmdRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_OPS_SET",
+    "code": 200
+}
+
+//运维数据存数据库
+"/v1/{edgeId}/security/devops/saveDb"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_OPS_SET",
+    "param":{
+            "Protocol": 2, 
+            "Compression": "yes", 
+            "MaxAuthTries": 3,  
+            "PermitRootLogin": "no", 
+            "PrintLastLog": "yes", 
+            "ClientAliveInterval":15,
+            "ClientAliveCountMax":3,
+            "AllowUsers":"root test", 
+            "PermitEmptyPasswords":"no", 
+            "IgnoreRhosts":"yes", 
+            "X11Forwarding":"no",
+            "Port":17092, 
+            "ListenAddress":"0.0.0.0", 
+            "key_right":"0600" 
+        }
+}
+"/v1/{edgeId}/security/devops/saveDbRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_OPS_SET",
+    "code": 200
+}
+
+//读数据库
+"/v1/{edgeId}/security/devops/readDb"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"readDb"
+}
+"/v1/{edgeId}/security/devops/saveDbRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"readDb",
+    "param":{
+            "Protocol": 2, 
+            "Compression": "yes", 
+            "MaxAuthTries": 3,  
+            "PermitRootLogin": "no", 
+            "PrintLastLog": "yes", 
+            "ClientAliveInterval":15,
+            "ClientAliveCountMax":3,
+            "AllowUsers":"root test", 
+            "PermitEmptyPasswords":"no", 
+            "IgnoreRhosts":"yes", 
+            "X11Forwarding":"no",
+            "Port":17092, 
+            "ListenAddress":"0.0.0.0", 
+            "key_right":"0600" 
+        }
+}
+
+//运维安全管理状态上报
+"/v1/{edgeId}/security/devops/data"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"REP_OPS_STATUS",
+    "param":{
+            "Protocol": 2, 
+            "Compression": "yes", 
+            "MaxAuthTries": 3, 
+            "PermitRootLogin": "no", 
+            "PrintLastLog": "yes", 
+            "ClientAliveInterval":15,
+            "ClientAliveCountMax":3,
+            "AllowUsers":"root test", 
+            "PermitEmptyPasswords":"no", 
+            "IgnoreRhosts":"yes",
+            "X11Forwarding":"no",
+            "Port":17092, 
+            "ListenAddress":"0.0.0.0", 
+            "key_right":"0600"
+        }
+}

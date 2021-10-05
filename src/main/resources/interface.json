@@ -1,0 +1,162 @@
+﻿/*
+ubuntu 18 网络配置文件在：/etc/netplan/*.yaml
+netplan apply  //设置生效
+#up/down 起动／关闭设备
+    ip link set dev eth0 up
+#改变网络设备MTU(最大传输单元)的值
+    ip link set dev eth0 mtu 1500
+#改变设备传输队列的长度
+    ip link set dev eth0 txqueuelen 100
+#修改网络设备的MAC地址
+    ip link set dev eth0 address 00:01:4f:00:15:f1
+
+
+流程说明：
+    1、程序启动后，读数据库获取接口配置信息；
+    2、
+        读取成功：按照参数信息定时进行检查，如发现信息不符项，及时上报；
+        读取失败：读取默认状态，并将状态保存数据库，并定时进行检查，如发现信息不符项，及时上报；
+    3、终端如收到查询指令，则按照“设备清单”内容上报设备状态；
+    4、终端收到设置指令，执行指令，并保存数据库，并按照指令定时进行检查，如发现信息不符项，及时上报；
+
+
+
+
+
+*/
+
+//接口查询
+"/v1/{edgeId}/security/interface/cmd"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_IF_QUERY"
+}
+//接口查询回复
+"/v1/{edgeId}/security/interface/cmdResponse"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_IF_QUERY",
+    "param":[
+        {
+            "if_name":"Console",
+            "operate":"up"
+        },
+        {
+            "if_name":"4G",
+            "operate":"up"
+        },
+        {
+            "if_name":"5G",
+            "operate":"down"
+        },
+        {
+            "if_name":"eth0",
+            "operate":"up"
+        },
+        {
+            "if_name":"eth1",
+            "operate":"up"
+        },
+        {
+            "if_name":"ttyS0",
+            "operate":"up"
+        },
+        {
+            "if_name":"ttys1",
+            "operate":"up"
+        },
+        {
+            "if_name":"bluetooth",
+            "operate":"up"
+        }
+    ]
+}
+
+//通信接口配置命令(最好是全量设置)
+"/v1/{edgeId}/security/interface/cmd"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_IF_SET",
+    "param":[{
+            "if_name":"Console",
+            "operate":"up"
+        },
+        {
+            "if_name":"eth0",
+            "operate":"up"
+        },
+        {
+            "if_name":"eth1",
+            "operate":"down"
+        }
+    ]
+}
+//通信接口配置命令回复
+"/v1/{edgeId}/security/interface/cmdRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_IF_SET",
+    "code": 200
+}
+
+//设置参数存储数据库
+"/v1/{edgeId}/security/interface/saveDb"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_IF_SET",
+    "param":[
+        {
+            "if_name":"Console",
+            "operate":"up"
+        },
+        {
+            "if_name":"eth0",
+            "operate":"up"
+        }
+    ]
+}
+"/v1/{edgeId}/security/interface/saveDbRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_IF_SET",
+    "code": 200
+}
+
+//读数据库
+"/v1/{edgeId}/security/interface/readDb"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"readDb"
+}
+"/v1/{edgeId}/security/interface/readDbRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"readDb",
+    "param":[
+        {
+            "if_name":"Console",
+            "operate":"up"
+        },
+        {
+            "if_name":"eth0",
+            "operate":"up"
+        }
+    ] 
+}
+

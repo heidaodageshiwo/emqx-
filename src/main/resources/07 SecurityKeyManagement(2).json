@@ -1,0 +1,42 @@
+//安全密钥修改命令
+终端订阅Topic：/v1/{edgeId}/security/cipher/command
+{
+	"mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_SKEY_SET_CONFIG",
+    "param": {
+			"keyvalue":"xxxxxxxxxx"
+        }
+}
+
+//安全密钥修改命令应答
+终端发布Topic：/v1/{edgeId}/security/cipher/reply
+{
+	"mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"CMD_SKEY_SET_CONFIG",
+    "code": 200
+}
+
+//安全密钥获取命令，终端向平台请求
+终端发布Topic：/v1/{edgeId}/security/cipher/request
+{
+	"mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"EVENT_SKEY_STATUS"
+}
+
+//安全密钥获取命令应答，平台向终端应答
+终端订阅Topic：/v1/{edgeId}/security/cipher/response
+{
+	"mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"EVENT_SKEY_STATUS",
+    "param": {
+			"keyvalue":"xxxxxxxxxx"
+        }
+}

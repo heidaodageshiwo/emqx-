@@ -1,0 +1,172 @@
+﻿/*
+流程说明：
+    1、不检测状态；
+*/
+
+//防火墙策略配置命令
+"/v1/{edgeId}/security/fw/cmd/policy"
+{
+	"mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "param": {
+            "policy":"ACCEPT/DROP"
+        }
+}
+
+//防火墙策略配置应答
+"/v1/{edgeId}/security/fw/cmd/policyRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+	"timestamp":"2021-08-12 08:29:45",
+    "code": 200
+}
+
+//防火墙规则配置命令
+"/v1/{edgeId}/security/fw/cmd/rules"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "param":{
+            "cmd":"append",
+            "interface":"eth0",
+            "sip":"192.168.3.5",
+            "sport":"1234",
+            "dip":"0.0.0.0",
+            "dport":"8888",
+            "protocol":"TCP",
+            "mac":"E8-B1-FC-31-D1-15"
+    }
+}
+
+//防火墙规则配置应答
+"/v1/{edgeId}/security/fw/cmd/rulesRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+	"timestamp":"2021-08-12 08:29:45",
+    "code": 200
+}
+
+//查询终端防护墙策略及规则
+"/v1/{edgeId}/security/fw/cmd/query"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"query"
+}
+
+//查询终端防护墙策略及规则响应
+"/v1/{edgeId}/security/fw/cmd/queryRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "param":{
+            "policy":"ACCEPT/DROP",              //策略
+            "rules":[
+                {
+                    "interface":"eth0",                 //网口
+                    "sip":"192.168.3.5",                //源IP
+                    "sport":"1234",                     //源端口
+                    "dip":"0.0.0.0",                    //目的IP
+                    "dport":"8888",                     //目的端口
+                    "protocol":"TCP/UDP/ICMP/ALL",      //协议
+                    "mac":"E8-B1-FC-31-D1-15"           //源MAC
+                }
+            ]
+    }
+}
+
+
+//防护墙策略及规则存储数据库
+"/v1/{edgeId}/security/fw/saveDb"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "param": {
+            "policy":"ACCEPT",
+            "num_input": 2,
+            "input":[
+                {"input":"-A INPUT -s 192.168.109.1/32 -i eth0 -p tcp -m tcp --sport 22 -j DROP"},
+                {"input":"-A INPUT -s 192.168.109.1/32 -i eth0 -p tcp -m tcp --sport 22 -j DROP"}
+            ],
+            "num_forward": 1,
+            "forward":[
+                {"forward":"-A INPUT -s 192.168.109.1/32 -i eth0 -p tcp -m tcp --sport 22 -j DROP"}
+            ],
+            "num_output": 1,
+            "output":[
+                {"output":"-A INPUT -s 192.168.109.1/32 -i eth0 -p tcp -m tcp --sport 22 -j DROP"}
+            ]
+        }
+}
+
+//保存数据库返回
+"/v1/{edgeId}/security/fw/saveDbRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "code": 200
+}
+
+//从数据库读防火墙信息
+"/v1/{edgeId}/security/fw/readDb"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "type":"readDb"
+}
+
+//读防护墙信息响应(数据库)
+"/v1/{edgeId}/security/fw/readDbRes"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "code": 200,
+    "param": {
+            "policy":"ACCEPT",
+            "num_input": 2,
+            "input":[
+                {"input":"-A INPUT -s 192.168.109.1/32 -i eth0 -p tcp -m tcp --sport 22 -j DROP"},
+                {"input":"-A INPUT -s 192.168.109.1/32 -i eth0 -p tcp -m tcp --sport 22 -j DROP"}
+            ],
+            "num_forward": 1,
+            "forward":[
+                {"forward":"-A INPUT -s 192.168.109.1/32 -i eth0 -p tcp -m tcp --sport 22 -j DROP"}
+            ],
+            "num_output": 1,
+            "output":[
+                {"output":"-A INPUT -s 192.168.109.1/32 -i eth0 -p tcp -m tcp --sport 22 -j DROP"}
+            ]
+        }
+}
+
+//终端主动上报策略及规则
+"/v1/{edgeId}/security/fw/data"
+{
+    "mid": 7,
+    "deviceId": "0120b22d-ba64-478b-ab73-9e0983d3075b",
+    "timestamp":"2021-08-12 08:29:45",
+    "param":{
+            "policy":"ACCEPT/DROP",              //策略
+            "rules":[
+                {
+                    "interface":"eth0",                 //网口
+                    "sip":"192.168.3.5",                //源IP
+                    "sport":"1234",                     //源端口
+                    "dip":"0.0.0.0",                    //目的IP
+                    "dport":"8888",                     //目的端口
+                    "protocol":"TCP/UDP/ICMP/ALL",      //协议
+                    "mac":"E8-B1-FC-31-D1-15"           //源MAC
+                }
+            ]
+    }
+}
