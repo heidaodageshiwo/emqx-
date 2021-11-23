@@ -1,7 +1,6 @@
-package com.emqx.emaxdemo.lnsoft;
+package com.emqx.emaxdemo.lnsot;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.Data;
 
 import java.util.ArrayList;

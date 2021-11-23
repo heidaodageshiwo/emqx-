@@ -27,10 +27,12 @@ import java.util.concurrent.Executors;
  */
 public class MqttCommon {
 
-  public static String deviceId = "test";
+  public static String deviceId = "+";
+//  public static String deviceId = "test";
   public static String deviceURL = "/v1/" + deviceId + "/security/";
   public static String pre = "iot_yygl_";
-  public static String tcpUrl = "tcp://192.168.1.100:11883";
+//  public static String tcpUrl = "tcp://192.168.1.100:11883";
+  public static String tcpUrl = "tcp://192.168.56.211:1883";
 
   public static CountDownLatch policylatch;
   public static CountDownLatch ruleslatch;
